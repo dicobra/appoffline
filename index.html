@@ -49,11 +49,34 @@
             <p class="event listening">Connecting to Loaction</p>
             <p class="event received">Location is Ready</p>
         </div>
+        <div class="position" id="position"></div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
+    </script>
+    <script type="text/javascript">
+
+        var positionvar = document.getElementById('position');
+
+        var onSuccess = function(position) {
+        positionvar.innerHTML = '<div class="position">' + '<hr/>' +
+              'Latitude: '          + position.coords.latitude          + '<br/>' +
+              'Longitude: '         + position.coords.longitude         + '<br/>' +
+              'Accuracy: '          + position.coords.accuracy          + '<br/>' +
+              'Timestamp: '         + position.timestamp                + '<hr/>' + '</div>';
+        };
+        function onError(error) {
+            alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+        };
+
+        navigator.geolocation.watchPosition(onSuccess, onError,{
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0
+        });
+
     </script>
 </body>
 
