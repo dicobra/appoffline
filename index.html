@@ -42,7 +42,8 @@
     <title>Location</title>
 </head>
 
-<body>
+<body onload="watchMapPosition()">
+
     <div class="app">
         <h1>Location</h1>
         <div id="deviceready" class="blink">
@@ -51,7 +52,7 @@
         </div>
         <div class="position" id="position"></div>
         <div class="map" id="map"></div>
-        <div onclick="getMap(-21.2290837, -43.7765104)"> ponto <br/><br/><br/><br/>
+        <div> ponto <br/><br/><br/><br/>
         </div>
 
     </div>
@@ -60,7 +61,7 @@
     <script type="text/javascript">
         app.initialize();
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=Your_API_Key"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-NkRM2va-JHbtMp3e5BzBWauSr8HOz2o"></script>
     <script type="text/javascript">
         var Latitude = undefined;
 var Longitude = undefined;
