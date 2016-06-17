@@ -80,11 +80,30 @@ function arrayBufferToBase64ImagePNG(buffer) {
     }
     return 'data:image/png;base64,' + btoa(binary);
 }
+        
+
+        var positionvar = document.getElementById('position');
+        var onSuccess = function(position) {
+        positionvar.innerHTML = '<div class="position">' + '<hr/>' +
+              'Latitude: '          + position.coords.latitude          + '<br/>' +
+              'Longitude: '         + position.coords.longitude         + '<br/>' +
+              'Accuracy: '          + position.coords.accuracy          + '<br/>' +
+              'Timestamp: '         + position.timestamp                + '<hr/>' + '</div>';
+        var lat = position.coords.latitude;
+        var long= position.coords.longitude;
+        console.log(lat);
+
 
 var dbname = 'tile';
 var db = new PouchDB(dbname);
-var map = L.map('map').setView([53.902254, 27.561850], 13);
+
+var map = L.map('map').setView([lat, long], 13);
 new StorageTileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {storage: db}).addTo(map);
+
+L.marker([lat, long]).addTo(map)
+    .bindPopup('latitude' + lat + 'longitude' + long)
+    .openPopup();
+
 
 map.addControl(new Control({position: 'topleft', innerHTML: 'C', handler: function () {
     ajax('cache_keys.json', 'text', function (response) {
@@ -107,3 +126,15 @@ map.addControl(new Control({position: 'topleft', innerHTML: 'D', handler: functi
         }
     });
 }}));
+
+};
+        
+        function onError(error) {
+            alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+        };
+
+        navigator.geolocation.watchPosition(onSuccess, onError,{
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0
+        });

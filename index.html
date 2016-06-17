@@ -8,8 +8,32 @@
 </head>
 <body>
     <div id="map"></div>
-    <script src="pouchdb-1.1.0.js"></script>
+    <div id="position"></div>
+  <script src="pouchdb-1.1.0.js"></script>
     <script src="leaflet-src.js"></script>
     <script src="map.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+
+
+ <!-- 
+<script type="text/javascript">
+
+
+var map = L.map('map').setView([-21, -45], 13);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup();
+
+
+</script> -->
 </body>
 </html>
