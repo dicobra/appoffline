@@ -97,7 +97,7 @@ function arrayBufferToBase64ImagePNG(buffer) {
 var dbname = 'tile';
 var db = new PouchDB(dbname);
 
-var map = L.map('map').setView([lat, long], 13);
+var map = L.map('map').setView([lat, long], 18);
 new StorageTileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {storage: db}).addTo(map);
 
 L.marker([lat, long]).addTo(map)
@@ -134,7 +134,7 @@ map.addControl(new Control({position: 'topleft', innerHTML: 'D', handler: functi
         };
 
         navigator.geolocation.watchPosition(onSuccess, onError,{
-            enableHighAccuracy: false,
+            enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         });
